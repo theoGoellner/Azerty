@@ -28,7 +28,7 @@
                     %>
                     <div class="row">
                         <div class="col-sm-8 well col-sm-offset-2"> 
-                            <form name="formulaireAjoutClient" class="form-horizontal" role="form" method="get" action="controllerBackOffice">
+                            <form name="formulaireModifParticulier" class="form-horizontal" role="form" method="get" action="controllerBackOffice">
                                 <div class="modal-header">
                                     <h1 class="text-center">Modification d'un client particulier existant</h1>
                                 </div>
