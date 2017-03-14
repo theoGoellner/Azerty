@@ -47,7 +47,7 @@ public class BackOfficeSession implements BackOfficeSessionLocal {
     public void modificationParticulier(Particulier part, String nom, String prenom, Date dateNais, String lieuNais, String telephone, String email, String adresse, int niveau) {
         particulierFacade.modifierParticulier(part, nom, prenom, dateNais, lieuNais, telephone, email, adresse, niveau);
     }
-    
+    ///teste
     @Override
     public Entreprise creationEntreprise(String siret, String nomEntreprise, EnumFormEntreprise formeEntreprise, String contact, String tphContact, String telephone, String email, String adresse, int niveau, Employe courtier) {
         return entrepriseFacade.creerEntreprise(siret, nomEntreprise, formeEntreprise, contact, tphContact, telephone, email, adresse, niveau, courtier);
