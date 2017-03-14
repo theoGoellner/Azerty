@@ -37,5 +37,7 @@ public interface AdministrationSessionLocal {
     Identification rechercheIdentParLogin(String login);
 
     void verrouillageIdentification(Identification ident);
+
+    void ajouterConnexion(Identification ident);
     
 }

@@ -8,6 +8,7 @@ import javax.xml.bind.DatatypeConverter;
 @Stateless
 public class CommunSession implements CommunSessionLocal {
 
+    
     @Override
     public String stringHash(String s) {
         try {

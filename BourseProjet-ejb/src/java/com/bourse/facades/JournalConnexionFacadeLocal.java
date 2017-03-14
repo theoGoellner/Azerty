@@ -1,5 +1,6 @@
 package com.bourse.facades;
 
+import com.bourse.entities.Identification;
 import com.bourse.entities.JournalConnexion;
 import java.util.List;
 import javax.ejb.Local;
@@ -20,5 +21,7 @@ public interface JournalConnexionFacadeLocal {
     List<JournalConnexion> findRange(int[] range);
 
     int count();
+
+    void ajouterConnexion(Identification identification);
     
 }

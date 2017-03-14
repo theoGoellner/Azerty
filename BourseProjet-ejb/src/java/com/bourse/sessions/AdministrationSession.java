@@ -5,6 +5,7 @@ import com.bourse.entities.Identification;
 import com.bourse.enumeration.EnumRoleEmploye;
 import com.bourse.facades.EmployeFacadeLocal;
 import com.bourse.facades.IdentificationFacadeLocal;
+import com.bourse.facades.JournalConnexionFacadeLocal;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -14,10 +15,16 @@ import javax.ejb.Stateless;
 public class AdministrationSession implements AdministrationSessionLocal {
 
     @EJB
-    private IdentificationFacadeLocal identificationFacade;
+    private JournalConnexionFacadeLocal journalConnexionFacade;
 
     @EJB
+    private IdentificationFacadeLocal identificationFacade;
+
+    
+    @EJB
     private EmployeFacadeLocal employeFacade;
+    
+    
     
     // GESTION DES IDENTIFICATIONS
    
@@ -91,5 +98,12 @@ public class AdministrationSession implements AdministrationSessionLocal {
     @Override
     public Employe rechercheChefSalle() {
         return employeFacade.rechercherChefSalle();
-    }       
+    } 
+
+    @Override
+    public void ajouterConnexion(Identification ident) {
+        journalConnexionFacade.ajouterConnexion(ident);
+    }
+    
+    
 }

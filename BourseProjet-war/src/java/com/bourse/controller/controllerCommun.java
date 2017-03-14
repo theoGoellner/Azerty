@@ -142,9 +142,10 @@ public class controllerCommun extends HttpServlet {
                 session = request.getSession(true);
                 session.setMaxInactiveInterval(DUREESESSIONVALIDE);
                 session.setAttribute("identification", ident);
-                if (ident.getTypeUser().equalsIgnoreCase("Employe")) {                                                       
+                administrationSession.ajouterConnexion(ident);
+                if (ident.getTypeUser().equalsIgnoreCase("Employe")) { 
                     jspClient = "/BackOffice/Accueil.jsp";
-                    Employe user = administrationSession.rechercheEmployeParID(ident.getIdUser());                   
+                    Employe user = administrationSession.rechercheEmployeParID(ident.getIdUser());
                     session.setAttribute("employe", user); 
                 } else {              
                     jspClient = "/FrontOffice/Accueil.jsp";
