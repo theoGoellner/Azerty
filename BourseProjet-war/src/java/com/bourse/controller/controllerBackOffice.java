@@ -83,10 +83,10 @@ public class controllerBackOffice extends HttpServlet {
                 case "archiverEmploye":
                     doActionArchiverEmploye(request, response);
                     break; 
-                case "formModifierEmploye":
+                case "formModifierEmploye":                   
                     emp = administrationSession.rechercheEmployeParID(Long.valueOf(request.getParameter("idEmploye")));
                     jspClient = "/Administration/GestionDesEmployes/formModifEmploye.jsp";
-                    request.setAttribute("employe", (Employe)emp);                    
+                    request.setAttribute("employe", emp);                    
                     break;                    
                 case "modifierEmploye":
                     doActionModifierEmploye(request, response);
