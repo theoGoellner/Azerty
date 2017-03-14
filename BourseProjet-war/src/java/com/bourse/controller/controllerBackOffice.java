@@ -83,6 +83,14 @@ public class controllerBackOffice extends HttpServlet {
                 case "archiverEmploye":
                     doActionArchiverEmploye(request, response);
                     break; 
+                case "formModifierEmploye":
+                    emp = administrationSession.rechercheEmployeParID(Long.valueOf(request.getParameter("idEmploye")));
+                    jspClient = "/Administration/GestionDesEmployes/formModifEmploye.jsp";
+                    request.setAttribute("employe", (Employe)emp);                    
+                    break;                    
+                case "modifierEmploye":
+                    doActionModifierEmploye(request, response);
+                    break;
                 case "formAjoutClient":
                     listeParticulier = backOfficeSession.getListeParticuliersActifs();
                     request.setAttribute("ListeDesParticuliers", listeParticulier);
@@ -319,7 +327,8 @@ public class controllerBackOffice extends HttpServlet {
         String idParticulier = request.getParameter("idParticulier");
         
         Particulier part = (Particulier) backOfficeSession.rechercheClientParID(Long.valueOf(idParticulier));        
-        backOfficeSession.modificationParticulier(part, nomClient, prenomClient, Date.valueOf(dateNaisClient), lieuNaisClient, tphClient, emailClient, adresseClient, Integer.parseInt(niveauClient));
+        backOfficeSession.modificationParticulier(part, nomClient, prenomClient, Date.valueOf(dateNaisClient), lieuNaisClient, 
+                tphClient, emailClient, adresseClient, Integer.parseInt(niveauClient));
         
         listeParticulier = backOfficeSession.getListeParticuliersActifs();
         request.setAttribute("ListeDesParticuliers", listeParticulier);
@@ -346,7 +355,24 @@ public class controllerBackOffice extends HttpServlet {
         String niveauClient = request.getParameter("niveauClient");
         
         String idEntreprise = request.getParameter("idEntreprise");
-
-
+        
+        Entreprise entr = (Entreprise) backOfficeSession.rechercheClientParID(Long.valueOf(idEntreprise));
+        backOfficeSession.modificationEntreprise(entr, siret, nomEntreprise, EnumFormEntreprise.valueOf(formeEntreprise), contactEntreprise, tphContactEntreprise, 
+                tphClient, emailClient, adresseClient, Integer.parseInt(niveauClient));
+        
+        listeParticulier = backOfficeSession.getListeParticuliersActifs();
+        request.setAttribute("ListeDesParticuliers", listeParticulier);
+        listeEntreprise = backOfficeSession.getListeEntreprisesActives();
+        request.setAttribute("ListeDesEntreprises", listeEntreprise);
+        message = "Modification du client réussi !";
+        request.setAttribute("message", message);
+        jspClient = "/BackOffice/GestionDesClients/formAjoutClient.jsp";
     }
+    
+    protected void doActionModifierEmploye(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            
+        
+    }
+    
 }
