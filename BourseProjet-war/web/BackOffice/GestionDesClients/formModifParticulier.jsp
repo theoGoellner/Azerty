@@ -23,8 +23,9 @@
             <div class="row content">
                 <div class="col-sm-10 text-left"> 
                     <%  Particulier part = (Particulier) request.getAttribute("particulier");
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd - MM - yyyy");                        
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");                        
                         Employe user = (Employe) session.getAttribute("employe");
+                        System.out.println("coco" + sdf.format(part.getDateNais()));
                     %>
                     <div class="row">
                         <div class="col-sm-8 well col-sm-offset-2"> 
@@ -49,13 +50,13 @@
                                 <div class="form-group">
                                     <label for="dateNaisClient" class="col-sm-4 control-label">Date de naissance</label>
                                     <div class="col-sm-8">
-                                        <input id="dateNaisClient" type="date" class="datepicker form-control" data-date-format="mm/dd/yyyy" name="dateNaisClient" value="<%= part.getDateNais() %>"required>
+                                        <input type="date" class="datepicker form-control" data-date-format="mm/dd/yyyy" name="dateEmbauche" value="<%= part.getDateNais() %>" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="lieuNaisClient" class="col-sm-4 control-label">Lieu de naissance</label>
                                     <div class="col-sm-8">
-                                        <input id="lieuNaisClient" type="text" class="form-control" name="lieuNaisClient" value="<%= part.getLieuNaissance() %>" required>
+                                        <input type="text" class="form-control" name="lieuNaisClient" value="<%= part.getLieuNaissance() %>" required>
                                     </div>
                                 </div>
                                 <%-- Champs pour tous les clients (téléphone, email, adresse, niveau) --%>
