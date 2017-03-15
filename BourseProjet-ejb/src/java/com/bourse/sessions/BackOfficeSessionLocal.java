@@ -1,9 +1,11 @@
 package com.bourse.sessions;
 
 import com.bourse.entities.Client;
+import com.bourse.entities.Contrat;
 import com.bourse.entities.Employe;
 import com.bourse.entities.Entreprise;
 import com.bourse.entities.Particulier;
+import com.bourse.entities.PorteFeuille;
 import com.bourse.enumeration.EnumFormEntreprise;
 import java.util.Date;
 import java.util.List;
@@ -37,4 +39,12 @@ public interface BackOfficeSessionLocal {
     List<Entreprise> getListeEntreprisesActivesParCourtier(Employe courtier);
 
     List<Particulier> getListeParticuliersActifsParCourtier(Employe courtier);
+
+    Contrat creationContrat(Date dateDebut, String rib, String typeContrat, Client cli);
+
+    Contrat rechercheContratParID(Long idContrat);
+
+    PorteFeuille creationPorteFeuille(Double montantInitial, Contrat contrat);
+
+    PorteFeuille recherchePorteFeuilleParID(Long idPorteFeuille);
 }

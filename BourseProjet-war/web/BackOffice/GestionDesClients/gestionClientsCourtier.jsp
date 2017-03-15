@@ -117,7 +117,7 @@
                                     </td>
                                     <td ><a href="controllerBackOffice?action=formModifierClient&idClient=<%= entr.getId()%>"> Modifier </a>
                                     </td>
-                                    <td ><a href="controllerBackOffice?action=gestionContratsClient&idClient=<%= entr.getId()%>"> Contrats </a>
+                                    <td ><a href="controllerBackOffice?action=gestionContratsClient&idClient=<%= entr.getId() %>"> Contrats </a>
                                     </td>
                                 </tr> 
                                 <%}%>

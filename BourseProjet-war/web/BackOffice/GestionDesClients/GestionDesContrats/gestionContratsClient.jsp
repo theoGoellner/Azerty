@@ -30,6 +30,7 @@
                     <%  String attribut = (String) request.getAttribute("message");
                         SimpleDateFormat sdf = new SimpleDateFormat("dd - MM - yyyy");
                         Employe user = (Employe) session.getAttribute("employe");
+                        Client client = (Client) request.getAttribute("client");
                         if (attribut.length() > 8) {%>
                     <div class="alert alert-info">
                         <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -39,7 +40,7 @@
 
                     <legend>Gestion des contrats</legend>
                     
-                    
+                    <a href="controllerBackOffice?action=formAjoutContrat&idClient=<%= client.getId()%>"> Ajouter un contrat </a>
 
                     <%@include  file="../../../jsp_commun/footer.jsp" %>
                 </div>
