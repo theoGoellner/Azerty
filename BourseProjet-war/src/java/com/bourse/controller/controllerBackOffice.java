@@ -47,6 +47,8 @@ public class controllerBackOffice extends HttpServlet {
     private Identification ident = null;
     private HttpSession session;
     
+    private String redirection;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -100,9 +102,33 @@ public class controllerBackOffice extends HttpServlet {
                 case "ajoutClient":
                     doActionAjoutClient(request, response);
                     break;
-                case "archiverClient":
-                    doActionArchiverClient(request, response);
+                case "gestionClientsCourtier":
+                    session = request.getSession(true); 
+                    listeParticulier = backOfficeSession.getListeParticuliersActifsParCourtier((Employe) session.getAttribute("employe"));
+                    request.setAttribute("ListeDesParticuliers", listeParticulier);
+                    listeEntreprise = backOfficeSession.getListeEntreprisesActivesParCourtier((Employe) session.getAttribute("employe"));
+                    request.setAttribute("ListeDesEntreprises", listeEntreprise);
+                    request.setAttribute("message", message);
+                    jspClient = "/BackOffice/GestionDesClients/gestionClientsCourtier.jsp";
+                    break;
+                case "gestionContratsClient":
+                    request.setAttribute("message", message);
+                    jspClient = "/BackOffice/GestionDesClients/GestionDesContrats/gestionContratsClient.jsp";
+                    break;
+                case "formAjoutContrat":
+                    jspClient = "/BackOffice/GestionDesClients/GestionDesContrats/formAjoutContrat.jsp";
+                    break;
+                case "formModifContrat":
+                    jspClient = "/BackOffice/GestionDesClients/GestionDesContrats/formModifContrat.jsp";
+                    break;
+                case "archiverClientAjout":   
+                    jspClient = "/BackOffice/GestionDesClients/formAjoutClient.jsp";
+                    doActionArchiverClient(request, response);                    
                     break; 
+                case "archiverClientGestion":
+                    jspClient = "/BackOffice/GestionDesClients/gestionClientsCourtier.jsp";
+                    doActionArchiverClient(request, response);
+                    break;                
                 case "formModifierClient":
                     cli = backOfficeSession.rechercheClientParID(Long.valueOf(request.getParameter("idClient")));
                     if (cli instanceof Entreprise){
@@ -323,16 +349,14 @@ public class controllerBackOffice extends HttpServlet {
     }
     
     protected void doActionArchiverClient(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        jspClient = "/BackOffice/GestionDesClients/formAjoutClient.jsp";
+            throws ServletException, IOException {    
         
         client = backOfficeSession.rechercheClientParID(Long.valueOf(request.getParameter("idClient")));
         backOfficeSession.archivageClient(client);
         
-        listeParticulier = backOfficeSession.getListeParticuliersActifs();
+        listeParticulier = backOfficeSession.getListeParticuliersActifsParCourtier((Employe) session.getAttribute("employe"));
         request.setAttribute("ListeDesParticuliers", listeParticulier);
-        listeEntreprise = backOfficeSession.getListeEntreprisesActives();
+        listeEntreprise = backOfficeSession.getListeEntreprisesActivesParCourtier((Employe) session.getAttribute("employe"));
         request.setAttribute("ListeDesEntreprises", listeEntreprise);
         message = "Archivage du client réussi !";
         request.setAttribute("message", message);

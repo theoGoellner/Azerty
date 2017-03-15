@@ -67,10 +67,20 @@ public class BackOfficeSession implements BackOfficeSessionLocal {
     public List<Particulier> getListeParticuliersActifs() {
         return particulierFacade.getListeParticuliersActifs();
     }
+    
+    @Override
+    public List<Particulier> getListeParticuliersActifsParCourtier(Employe courtier) {
+        return particulierFacade.getListeParticuliersActifsParCourtier(courtier);
+    }
 
     @Override
     public List<Entreprise> getListeEntreprisesActives() {
         return entrepriseFacade.getListeEntreprisesActives();
+    }
+    
+    @Override
+    public List<Entreprise> getListeEntreprisesActivesParCourtier(Employe courtier) {
+        return entrepriseFacade.getListeEntreprisesActivesParCourtier(courtier);
     }
 
     @Override
@@ -88,6 +98,12 @@ public class BackOfficeSession implements BackOfficeSessionLocal {
     public List<Client> getListeClients() {
         return clientFacade.getListeClients();
     }
+
+    
+
+    
+    
+    
 
     
 

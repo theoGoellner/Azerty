@@ -19,6 +19,7 @@
 
                     <li class="active"><a href="controllerBackOffice?action=formAjoutEmploye">Ajouter un Employé</a></li>
                     <li class="active"><a href="controllerBackOffice?action=formAjoutClient">Ajouter un Client</a></li>
+                    <li class="active"><a href="controllerBackOffice?action=gestionClientsCourtier">Gerer mes clients</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">

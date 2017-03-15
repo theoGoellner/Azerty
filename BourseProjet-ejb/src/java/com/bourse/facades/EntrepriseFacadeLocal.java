@@ -30,4 +30,6 @@ public interface EntrepriseFacadeLocal {
     Entreprise rechercherEntrepriseParSIRET(String siret);
 
     List<Entreprise> getListeEntreprisesActives();
+
+    List<Entreprise> getListeEntreprisesActivesParCourtier(Employe courtier);
 }

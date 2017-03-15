@@ -33,4 +33,8 @@ public interface BackOfficeSessionLocal {
     void modificationParticulier(Particulier part, String nom, String prenom, Date dateNais, String lieuNais, String telephone, String email, String adresse, int niveau);
 
     void modificationEntreprise(Entreprise entr, String siret, String nomEntreprise, EnumFormEntreprise formeEntreprise, String contact, String tphContact, String telephone, String email, String adresse, int niveau);
+
+    List<Entreprise> getListeEntreprisesActivesParCourtier(Employe courtier);
+
+    List<Particulier> getListeParticuliersActifsParCourtier(Employe courtier);
 }
