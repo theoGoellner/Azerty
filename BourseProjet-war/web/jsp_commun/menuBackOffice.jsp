@@ -15,6 +15,8 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="controllerBackOffice?action=accueil">Accueil</a></li> 
                     <li class="active"><a href="controllerCommun?action=deconnexion">Se déconnecter</a></li>
+                    <li class="active"><a href="controllerCommun?action=formInitPwd">initialisation pwd</a></li>
+
                     <li class="active"><a href="controllerBackOffice?action=formAjoutEmploye">Ajouter un Employé</a></li>
                     <li class="active"><a href="controllerBackOffice?action=formAjoutClient">Ajouter un Client</a></li>
                     <li class="dropdown">

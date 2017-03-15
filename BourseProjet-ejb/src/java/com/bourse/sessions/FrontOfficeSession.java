@@ -7,8 +7,5 @@ import javax.ejb.Stateless;
 @Stateless
 public class FrontOfficeSession implements FrontOfficeSessionLocal {
 
-    @EJB
-    private JournalConnexionFacadeLocal journalConnexionFacade;
 
-  
 }

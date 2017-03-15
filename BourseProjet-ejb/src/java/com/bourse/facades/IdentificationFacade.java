@@ -99,4 +99,22 @@ public class IdentificationFacade extends AbstractFacade<Identification> impleme
         }
         return ident;
     }
+
+    @Override
+    public Identification rechercherIdentParID(Long idIdent) {
+        Identification ident = null;
+        try {
+            Query req = em.createQuery("select i from Identification as i where i.id=:idIdent and i.estActif=:true");
+            req.setParameter("idIdent", idIdent);
+            req.setParameter("true", true);
+            ident = (Identification) req.getSingleResult();
+        } catch (Exception e) {
+            ident = null;
+            System.out.println("Erreur dans la facade Identification dans la méthode rechercherIdentParID " + e.getMessage());
+        }
+        return ident;
+    }
+    
+    
+    
 }

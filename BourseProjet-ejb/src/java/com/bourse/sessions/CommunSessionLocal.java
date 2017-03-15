@@ -1,5 +1,6 @@
 package com.bourse.sessions;
 
+import com.bourse.entities.Identification;
 import javax.ejb.Local;
 
 
@@ -13,5 +14,9 @@ public interface CommunSessionLocal {
     String URLEncode(String s);
 
     String URLDecode(String s);
+
+    Identification rechercheIdentParLogin(String login);
+
+    void modificationIdentification(Identification identification, String login, String pwd);
     
 }

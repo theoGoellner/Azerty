@@ -1,13 +1,20 @@
 package com.bourse.sessions;
 
+import com.bourse.entities.Identification;
+import com.bourse.facades.IdentificationFacadeLocal;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.xml.bind.DatatypeConverter;
 
 @Stateless
 public class CommunSession implements CommunSessionLocal {
 
+    @EJB
+    private IdentificationFacadeLocal identificationFacade;
+
+    
     
     @Override
     public String stringHash(String s) {
@@ -45,4 +52,16 @@ public class CommunSession implements CommunSessionLocal {
         String decoded = new String(DatatypeConverter.parseBase64Binary(s));
         return decoded;
     }
+
+    @Override
+    public Identification rechercheIdentParLogin(String login) {
+        return identificationFacade.rechercherIdentParLogin(login);
+    }
+
+    @Override
+    public void modificationIdentification(Identification identification, String login, String pwd) {
+        identificationFacade.modifierIdentification(identification, login, pwd);
+    }
+    
+    
 }

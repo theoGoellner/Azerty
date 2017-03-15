@@ -36,4 +36,6 @@ public interface IdentificationFacadeLocal {
     Identification rechercherIdentParLogin(String login);
 
     void verrouillerIdentification(Identification ident);
+
+    Identification rechercherIdentParID(Long idIdent);
 }
