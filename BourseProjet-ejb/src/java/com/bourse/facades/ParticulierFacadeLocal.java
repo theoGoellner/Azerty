@@ -31,4 +31,6 @@ public interface ParticulierFacadeLocal {
 
     List<Particulier> getListeParticuliersActifs();
     
+    List<Particulier> getListeParticuliersActifsParCourtier(Employe courtier);
+    
 }

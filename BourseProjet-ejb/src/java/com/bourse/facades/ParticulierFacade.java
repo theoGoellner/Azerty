@@ -36,6 +36,20 @@ public class ParticulierFacade extends AbstractFacade<Particulier> implements Pa
         }
         return listePartActifs;
     }
+    
+    @Override
+    public List<Particulier> getListeParticuliersActifsParCourtier(Employe courtier) {
+        List<Particulier> listePartActifs = null;
+        try {
+            Query req = em.createQuery("Select p from Particulier as p where p.dateArchivage is null and p.courtier=:courtier");
+            req.setParameter("courtier", courtier);
+            listePartActifs = req.getResultList();
+        } catch (Exception e) {
+            listePartActifs = null;
+            System.out.println("Erreur dans la facade Particulier dans la méthode getListeParticuliersActifsParCourtier " + e.getMessage());
+        }
+        return listePartActifs;
+    }
 
     @Override
     public Particulier creerParticulier(String nom, String prenom, Date dateNais, String lieuNais, String telephone, String email, String adresse, int niveau, Employe courtier) {

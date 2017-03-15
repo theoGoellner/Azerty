@@ -210,12 +210,7 @@
                                     <td > <%= part.getMail()%> </td>
                                     <td > <%= part.getAdresse()%> </td>
                                     <td > <%= part.getNiveau()%> </td>
-                                    <td >
-                                        <% if(part.getCourtier().equals(user)) { %>
-                                            <a href="controllerBackOffice?action=archiverClientAjout&idClient=<%= part.getId()%>"> 
-                                            <span class="glyphicon glyphicon-trash"></span></a> 
-                                        <% } else { %>
-                                             <span class="glyphicon glyphicon-trash"></span><% } %>                                        
+                                    <td ><a href="controllerBackOffice?action=archiverClient&idClient=<%= part.getId()%>"> Archiver </a>
                                     </td>
                                     <td ><a href="controllerBackOffice?action=formModifierClient&idClient=<%= part.getId()%>"> Modifier </a>
                                     </td>
@@ -255,15 +250,9 @@
                                     <td > <%= entr.getMail()%> </td>
                                     <td > <%= entr.getAdresse()%> </td>
                                     <td > <%= entr.getNiveau()%> </td>
-                                    <td >
-                                        <% if(entr.getCourtier().equals(user)) { %>
-                                        <a href="controllerBackOffice?action=archiverClientAjout&idClient=<%= entr.getId()%>"> 
-                                             <span class="glyphicon glyphicon-trash"></span> </a> <% } else { %>
-                                             <span class="glyphicon glyphicon-trash"></span> 
-                                        <% } %>
+                                    <td ><a href="controllerBackOffice?action=archiverClient&idClient=<%= entr.getId()%>"> <span class="glyphicon glyphicon-trash"></span> Archiver </a>
                                     </td>
-                                    <td >
-                                        <a href="controllerBackOffice?action=formModifierClient&idClient=<%= entr.getId()%>"> Modifier </a>
+                                    <td ><a href="controllerBackOffice?action=formModifierClient&idClient=<%= entr.getId()%>"> Modifier </a>
                                     </td>
                                 </tr> 
                                 <%}%>
