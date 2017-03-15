@@ -119,6 +119,9 @@ public class controllerBackOffice extends HttpServlet {
                 case "modifierEntreprise":
                     doActionModifierEntreprise(request, response);
                     break;
+                case "rechClient":
+                    jspClient = "/Administration/GestionDesEmployes/formModifEmploye.jsp";
+                    break;
             }
         }
         RequestDispatcher Rd;

@@ -50,19 +50,19 @@
                                     <div class="form-group">
                                         <label for="pwd" class="col-lg-3 control-label">Ancien mot de passe </label>
                                         <div class="col-lg-9">
-                                            <input type="text" class="form-control" name="pwd" placeholder="Saisir votre ancien mot de passe" required>
+                                            <input type="password" class="form-control" name="pwd" placeholder="Saisir votre ancien mot de passe" required>
                                         </div>
                                     </div>  
                                     <div class="form-group">
                                         <label for="newPwd" class="col-lg-3 control-label">Nouveau mot de passe </label>
                                         <div class="col-lg-9">
-                                            <input type="text" class="form-control" name="newPwd" placeholder="Saisir nouveau mot de passe" required>
+                                            <input type="password" class="form-control" name="newPwd" placeholder="Saisir nouveau mot de passe" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="newPwdConfirm" class="col-lg-3 control-label">Nouveau mot de passe </label>
                                         <div class="col-lg-9">
-                                            <input type="text" class="form-control" name="newPwdConfirm" placeholder="Confirmer votre nouveau mot de passe" required>
+                                            <input type="password" class="form-control" name="newPwdConfirm" placeholder="Confirmer votre nouveau mot de passe" required>
                                         </div>
                                     </div> 
 

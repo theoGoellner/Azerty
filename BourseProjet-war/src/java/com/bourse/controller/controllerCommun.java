@@ -77,7 +77,7 @@ public class controllerCommun extends HttpServlet {
                     break;
                 case "deconnexion":
                     jspClient = "/Accueil.jsp";
-                    session = request.getSession(true);
+                    session = request.getSession(false);
                     session.invalidate();
                     break;
                 case "formInitPwd":
@@ -210,8 +210,9 @@ public class controllerCommun extends HttpServlet {
         else {
             communSession.modificationIdentification(ident, loginUser, communSession.stringHash(newPwd));
             message = "Modification réussie.";
-            jspClient = "/CommunOffice/InitialisationPwd.jsp";
-        }               
+        }     
+        jspClient = "/CommunOffice/InitialisationPwd.jsp";
+
         request.setAttribute("message", message);
     }
 }
