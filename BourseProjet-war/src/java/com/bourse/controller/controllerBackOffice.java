@@ -233,6 +233,36 @@ public class controllerBackOffice extends HttpServlet {
         request.setAttribute("message", message);
     }
     
+    protected void doActionModifierEmploye(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            
+        String nomEmploye = request.getParameter("nomEmploye");
+        String prenomEmploye = request.getParameter("prenomEmploye");
+        String dateEmbauche = request.getParameter("dateEmbauche");
+        String emailEmploye = request.getParameter("emailEmploye");
+        String niveauEmploye = request.getParameter("niveauEmploye");
+        
+        String idEmploye = request.getParameter("idEmploye");
+        
+        Employe emp = (Employe) administrationSession.rechercheEmployeParID(Long.valueOf(idEmploye));
+
+        if ((!emp.getNom().equalsIgnoreCase(nomEmploye) || !emp.getPrenom().equalsIgnoreCase(prenomEmploye))
+                && (administrationSession.rechercheEmployeParNomPrenom(nomEmploye, prenomEmploye) != null)) {
+            message = "Erreur - Un employé existe déja avec le même nom et le même prénom.";
+        } else {           
+            if (emp.getRole().equals(EnumRoleEmploye.Courtier)) {
+                administrationSession.modificationEmploye(emp, nomEmploye, prenomEmploye, emailEmploye, Date.valueOf(dateEmbauche), Integer.parseInt(niveauEmploye));
+            } else {
+                administrationSession.modificationEmploye(emp, nomEmploye, prenomEmploye, emailEmploye, Date.valueOf(dateEmbauche), Integer.valueOf(-1));
+            }
+            message = "Modification réussie.";
+        }
+            
+        listeEmp = administrationSession.getListeEmployesActifs();
+        request.setAttribute("ListeDesEmployes", listeEmp);
+        request.setAttribute("message", message);
+        jspClient = "/Administration/GestionDesEmployes/formAjoutEmploye.jsp";
+    }
     
     // ------------------------ GESTION DES CLIENTS ----------------------------
     
@@ -326,9 +356,14 @@ public class controllerBackOffice extends HttpServlet {
         
         String idParticulier = request.getParameter("idParticulier");
         
-        Particulier part = (Particulier) backOfficeSession.rechercheClientParID(Long.valueOf(idParticulier));        
-        backOfficeSession.modificationParticulier(part, nomClient, prenomClient, Date.valueOf(dateNaisClient), lieuNaisClient, 
+        Particulier part = (Particulier) backOfficeSession.rechercheClientParID(Long.valueOf(idParticulier)); 
+        
+        if (backOfficeSession.rechercheParticulierParNomPrenom(nomClient, prenomClient) != null) {
+            message = "Erreur - Un client de type particulier existe déja avec le même nom et le même prénom.";
+        } else {
+            backOfficeSession.modificationParticulier(part, nomClient, prenomClient, Date.valueOf(dateNaisClient), lieuNaisClient, 
                 tphClient, emailClient, adresseClient, Integer.parseInt(niveauClient));
+        }  
         
         listeParticulier = backOfficeSession.getListeParticuliersActifs();
         request.setAttribute("ListeDesParticuliers", listeParticulier);
@@ -357,8 +392,13 @@ public class controllerBackOffice extends HttpServlet {
         String idEntreprise = request.getParameter("idEntreprise");
         
         Entreprise entr = (Entreprise) backOfficeSession.rechercheClientParID(Long.valueOf(idEntreprise));
-        backOfficeSession.modificationEntreprise(entr, siret, nomEntreprise, EnumFormEntreprise.valueOf(formeEntreprise), contactEntreprise, tphContactEntreprise, 
+        
+        if (backOfficeSession.rechercheEntrepriseParSIRET(siret) != null) {
+            message = "Erreur - Un client de type entreprise existe déja avec le même siret.";
+        } else {
+            backOfficeSession.modificationEntreprise(entr, siret, nomEntreprise, EnumFormEntreprise.valueOf(formeEntreprise), contactEntreprise, tphContactEntreprise, 
                 tphClient, emailClient, adresseClient, Integer.parseInt(niveauClient));
+        }   
         
         listeParticulier = backOfficeSession.getListeParticuliersActifs();
         request.setAttribute("ListeDesParticuliers", listeParticulier);
@@ -367,12 +407,5 @@ public class controllerBackOffice extends HttpServlet {
         message = "Modification du client réussi !";
         request.setAttribute("message", message);
         jspClient = "/BackOffice/GestionDesClients/formAjoutClient.jsp";
-    }
-    
-    protected void doActionModifierEmploye(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-            
-        
-    }
-    
+    }  
 }

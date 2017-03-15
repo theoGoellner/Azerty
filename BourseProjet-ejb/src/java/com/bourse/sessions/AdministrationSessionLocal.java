@@ -39,5 +39,7 @@ public interface AdministrationSessionLocal {
     void verrouillageIdentification(Identification ident);
 
     void ajouterConnexion(Identification ident);
+
+    void modificationEmploye(Employe emp, String nom, String prenom, String email, Date dateEmbauche, int niveau);
     
 }

@@ -57,14 +57,12 @@ public class EmployeFacade extends AbstractFacade<Employe> implements EmployeFac
     }
 
     @Override
-    public void modifierEmploye(Employe emp, String nom, String prenom, String email, Date dateEmbauche, int niveau, EnumRoleEmploye role, Employe responsable) {
+    public void modifierEmploye(Employe emp, String nom, String prenom, String email, Date dateEmbauche, int niveau) {
         emp.setNom(nom.toUpperCase());
         emp.setPrenom(prenom.toUpperCase());
         emp.setEmail(email);
         emp.setDateEmbauche(dateEmbauche);
         emp.setNiveau(niveau);
-        emp.setRole(role);
-        emp.setResponsable(responsable);
         em.merge(emp);
     }
     

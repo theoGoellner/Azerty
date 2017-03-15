@@ -25,7 +25,7 @@ public interface EmployeFacadeLocal {
     
     Employe creerEmploye(String nom, String prenom, String email, Date dateEmbauche, int niveau, EnumRoleEmploye role, Employe responsable);
 
-    void modifierEmploye(Employe emp, String nom, String prenom, String email, Date dateEmbauche, int niveau, EnumRoleEmploye role, Employe responsable);
+    void modifierEmploye(Employe emp, String nom, String prenom, String email, Date dateEmbauche, int niveau);
 
     Employe rechercherEmployeParID(Long idEmploye);
 

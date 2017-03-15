@@ -104,6 +104,11 @@ public class AdministrationSession implements AdministrationSessionLocal {
     public void ajouterConnexion(Identification ident) {
         journalConnexionFacade.ajouterConnexion(ident);
     }
+
+    @Override
+    public void modificationEmploye(Employe emp, String nom, String prenom, String email, Date dateEmbauche, int niveau) {
+        employeFacade.modifierEmploye(emp, nom, prenom, email, dateEmbauche, niveau);
+    }
     
     
 }

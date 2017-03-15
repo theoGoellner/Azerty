@@ -50,7 +50,7 @@
                                 <div class="form-group">
                                     <label for="dateNaisClient" class="col-sm-4 control-label">Date de naissance</label>
                                     <div class="col-sm-8">
-                                        <input type="date" class="datepicker form-control" data-date-format="mm/dd/yyyy" name="dateEmbauche" value="<%= part.getDateNais() %>" required>
+                                        <input type="text" class="form-control" name="dateEmbauche" value="<%= sdf.format(part.getDateNais()) %>" required>
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -1,3 +1,4 @@
+<%@page import="com.bourse.enumeration.EnumRoleEmploye"%>
 <%@page import="com.bourse.entities.Employe"%>
 <%@page import="com.bourse.entities.Particulier"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -22,7 +23,7 @@
         <div class="container-fluid text-center col-sm-offset-2">
             <div class="row content">
                 <div class="col-sm-10 text-left"> 
-                    <%  SimpleDateFormat sdf = new SimpleDateFormat("dd - MM - yyyy");                        
+                    <%  SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");                        
                         Employe user = (Employe) request.getAttribute("employe");
                     %>
                     <div class="row">
@@ -47,7 +48,7 @@
                                     <div class="form-group">
                                         <label for="dateEmbauche" class="col-lg-3 control-label">Date Embauche</label>
                                         <div class="col-lg-9">
-                                            <input type="date" class="datepicker form-control" data-date-format="mm/dd/yyyy" name="dateEmbauche" value="<%= user.getDateEmbauche() %>" required>
+                                            <input type="date" class="form-control" name="dateEmbauche" value="<%= sdf.format(user.getDateEmbauche()) %>" required>
                                         </div>
                                     </div> 
                                     <div class="form-group">
@@ -57,6 +58,7 @@
                                         </div>
                                     </div>                                        
                                 
+                                <% if(user.getRole().equals(EnumRoleEmploye.Courtier)) {%>
                                 <div class="form-group">
                                     <label for="niveauEmploye" class="col-lg-3 control-label">Niveau</label>
                                     <div class="col-lg-9">
@@ -71,6 +73,7 @@
                                         </select>
                                     </div> 
                                 </div>  
+                                <%}%>
                                                                                 
                                 <input type="hidden" name="idEmploye" value="<%= user.getId() %>">
 
