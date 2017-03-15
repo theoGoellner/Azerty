@@ -208,7 +208,7 @@ public class controllerCommun extends HttpServlet {
             message = "Erreur : Ce login est déjà pris, veillez choisir un autre login.";
         }
         else {
-            communSession.modificationIdentification(ident, loginUser, communSession.stringHash(pwd));
+            communSession.modificationIdentification(ident, loginUser, communSession.stringHash(newPwd));
             message = "Modification réussie.";
             jspClient = "/CommunOffice/InitialisationPwd.jsp";
         }               
