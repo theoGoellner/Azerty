@@ -15,14 +15,15 @@
             <title>Initialisation mot de passe </title>       
         </head>
         <body>
+            
         <%
-            Identification ident = (Identification) session.getAttribute("identification");
-            if (ident.getTypeUser().equalsIgnoreCase("Employe")) {
+            Identification ident =(Identification) session.getAttribute("identification");
+                System.out.println("cocoo"+ident.getLogin());
+           
         %>
         <%@include  file="../jsp_commun/menuBackOffice.jsp" %>
-        <% } else { %>
-        <%@include  file="../jsp_commun/menuFrontOffice.jsp" %>
-        %>
+        
+        
         <div class="container-fluid text-center col-sm-offset-2">
             <div class="row content">
                 <div class="col-sm-10 text-left"> 

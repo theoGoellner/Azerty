@@ -80,6 +80,16 @@ public class controllerCommun extends HttpServlet {
                     session = request.getSession(true);
                     session.invalidate();
                     break;
+                case "formInitPwd":
+                    request.setAttribute("message", message);
+                    jspClient = "/CommunOffice/InitialisationPwd.jsp";
+                    break;
+
+                case "pwdInit":
+                    doActionInitialisationPwd(request, response);
+                    break;                    
+                    
+                    
             }
         }
         RequestDispatcher Rd;
@@ -183,4 +193,25 @@ public class controllerCommun extends HttpServlet {
         request.setAttribute("message", message);
     }
 
+        protected void doActionInitialisationPwd(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String loginUser = request.getParameter("loginUser");
+        String pwd = request.getParameter("pwd");
+        String newPwd = request.getParameter("newPwd");
+        String newPwdConfirm = request.getParameter("newPwdConfirm");
+
+        session = request.getSession(true);
+        ident = (Identification)session.getAttribute("identification");
+        
+        if (!ident.getLogin().equalsIgnoreCase(loginUser)&&communSession.rechercheIdentParLogin(loginUser)!=null) {
+            message = "Erreur : Ce login est déjà pris, veillez choisir un autre login.";
+        }
+        else {
+            communSession.modificationIdentification(ident, loginUser, communSession.stringHash(newPwd));
+            message = "Modification réussie.";
+            jspClient = "/CommunOffice/InitialisationPwd.jsp";
+        }               
+        request.setAttribute("message", message);
+    }
 }

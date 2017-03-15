@@ -14,6 +14,8 @@
       <ul class="nav navbar-nav">
                     <li class="active"><a href="controllerFrontOffice?action=accueil">Accueil</a></li>
                     <li class="active"><a href="controllerCommun?action=deconnexion">Se déconnecter</a></li>
+                    <li class="active"><a href="controllerCommun?action=formInitPwd">initialisation pwd</a></li>
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
