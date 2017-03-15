@@ -55,7 +55,7 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
     public Entreprise creerEntreprise(String siret, String nomEntreprise, EnumFormEntreprise formeEntreprise, String contact, String tphContact, String telephone, String email, String adresse, int niveau, Employe courtier) {
         Entreprise entr = new Entreprise();
         entr.setSiret(siret);
-        entr.setNomEntreprise(nomEntreprise);
+        entr.setNomEntreprise(nomEntreprise.toUpperCase());
         entr.setFormeSociete(formeEntreprise);
         entr.setContact(contact);
         entr.setTphContact(tphContact);
@@ -71,7 +71,7 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
     @Override
     public void modifierEntreprise(Entreprise entr, String siret, String nomEntreprise, EnumFormEntreprise formeEntreprise, String contact, String tphContact, String telephone, String email, String adresse, int niveau) {
         entr.setSiret(siret);
-        entr.setNomEntreprise(nomEntreprise);
+        entr.setNomEntreprise(nomEntreprise.toUpperCase());
         entr.setFormeSociete(formeEntreprise);
         entr.setContact(contact);
         entr.setTphContact(tphContact);
@@ -94,6 +94,23 @@ public class EntrepriseFacade extends AbstractFacade<Entreprise> implements Entr
             System.out.println("Erreur dans la facade Entreprise dans la méthode rechercherEntrepriseParSIRET " + e.getMessage());
         }
         return part;
+    }
+
+    @Override
+    public List<Entreprise> rechercheListeEntreprisesParCourtierParNomSiret(Employe courtier, String siret, String nom) {
+    List<Entreprise> listEntr = null;
+        try {
+            Query req = em.createQuery("select e from Entreprise as e where e.courtier = :courtier and (e.Siret like '%:siret%' or e.nomEntreprise like '%UPPER(:nom)%') and p.dateArchivage is null");
+            req.setParameter("nom", nom);
+            req.setParameter("siret", siret);
+            req.setParameter("courtier", courtier);
+            
+            listEntr = req.getResultList();
+        } catch (Exception e) {
+            listEntr=null;
+            System.out.println("Erreur dans la facade Particulier dans la méthode rechercheListeEntreprisesParCourtierParNomSiret " + e.getMessage());
+        }
+        return listEntr;   
     }
 
     

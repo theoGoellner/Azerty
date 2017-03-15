@@ -54,8 +54,8 @@ public class ParticulierFacade extends AbstractFacade<Particulier> implements Pa
     @Override
     public Particulier creerParticulier(String nom, String prenom, Date dateNais, String lieuNais, String telephone, String email, String adresse, int niveau, Employe courtier) {
         Particulier part = new Particulier();
-        part.setNom(nom);
-        part.setPrenom(prenom);
+        part.setNom(nom.toUpperCase());
+        part.setPrenom(prenom.toUpperCase());
         part.setDateNais(dateNais);
         part.setLieuNaissance(lieuNais);
         part.setTelephone(telephone);
@@ -69,8 +69,8 @@ public class ParticulierFacade extends AbstractFacade<Particulier> implements Pa
 
     @Override
     public void modifierParticulier(Particulier part, String nom, String prenom, Date dateNais, String lieuNais, String telephone, String email, String adresse, int niveau) {
-        part.setNom(nom);
-        part.setPrenom(prenom);
+        part.setNom(nom.toUpperCase());
+        part.setPrenom(prenom.toUpperCase());
         part.setDateNais(dateNais);
         part.setLieuNaissance(lieuNais);
         part.setTelephone(telephone);
@@ -93,6 +93,23 @@ public class ParticulierFacade extends AbstractFacade<Particulier> implements Pa
             System.out.println("Erreur dans la facade Particulier dans la méthode rechercherParticulierParNomPrenom " + e.getMessage());
         }
         return part;
+    }
+
+    @Override
+    public List<Particulier> rechercherListeParticuliersParCourtierParNomPrenom(Employe courtier, String nom, String prenom) {
+    List<Particulier> listPart = null;
+        try {
+            Query req = em.createQuery("select p from Particulier as p where p.courtier = :courtier and (p.nom like '%UPPER(:nom)%' or p.prenom like '%UPPER(:prenom)%') and p.dateArchivage is null");
+            req.setParameter("nom", nom);
+            req.setParameter("prenom", prenom);
+            req.setParameter("courtier", courtier);
+            
+            listPart = req.getResultList();
+        } catch (Exception e) {
+            listPart=null;
+            System.out.println("Erreur dans la facade Particulier dans la méthode rechercheListeParticuliersParCourtierParNomPrenom " + e.getMessage());
+        }
+        return listPart;
     }
 
     

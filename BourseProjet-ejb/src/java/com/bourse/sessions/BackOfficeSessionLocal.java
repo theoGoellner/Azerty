@@ -37,4 +37,8 @@ public interface BackOfficeSessionLocal {
     List<Entreprise> getListeEntreprisesActivesParCourtier(Employe courtier);
 
     List<Particulier> getListeParticuliersActifsParCourtier(Employe courtier);
+
+    List<Particulier> rechercheListeParticuliersParCourtierParNomPrenom(Employe courtier, String nom, String prenom);
+
+    List<Entreprise> rechercheListeEntreprisesParCourtierParNomPrenom(Employe courtier, String siret, String nom);
 }

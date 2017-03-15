@@ -99,6 +99,16 @@ public class BackOfficeSession implements BackOfficeSessionLocal {
         return clientFacade.getListeClients();
     }
 
+    @Override
+    public List<Particulier> rechercheListeParticuliersParCourtierParNomPrenom(Employe courtier, String nom, String prenom) {
+        return particulierFacade.rechercherListeParticuliersParCourtierParNomPrenom(courtier, nom, prenom);
+    }
+
+    @Override
+    public List<Entreprise> rechercheListeEntreprisesParCourtierParNomPrenom(Employe courtier, String siret, String nom) {
+        return entrepriseFacade.rechercheListeEntreprisesParCourtierParNomSiret(courtier, siret, nom);
+    }
+
     
 
     

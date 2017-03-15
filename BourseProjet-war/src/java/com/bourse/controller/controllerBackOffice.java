@@ -145,8 +145,12 @@ public class controllerBackOffice extends HttpServlet {
                 case "modifierEntreprise":
                     doActionModifierEntreprise(request, response);
                     break;
-                case "rechClient":
-                    jspClient = "/Administration/GestionDesEmployes/formModifEmploye.jsp";
+                case "formRechClient":
+                    request.setAttribute("message", message);
+                    jspClient = "/Administration/GestionDesEmployes/formRechClient.jsp";
+                    break;
+                case "RechClient":
+                    doActionRechercherClient(request, response);
                     break;
             }
         }
@@ -433,4 +437,44 @@ public class controllerBackOffice extends HttpServlet {
         request.setAttribute("message", message);
         jspClient = "/BackOffice/GestionDesClients/formAjoutClient.jsp";
     }  
+    
+    
+        protected void doActionRechercherClient(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        listeParticulier =null;
+        listeEntreprise =null;  
+        
+        String typeClient = request.getParameter("typeClient");
+        String nomClient = request.getParameter("nomClient");
+        String prenomClient = request.getParameter("prenomClient");
+        String siret = request.getParameter("siret");
+        String nomEntreprise = request.getParameter("nomEntreprise");
+       
+        session = request.getSession(true);
+        Employe courtier = (Employe)session.getAttribute("employe");
+        
+       if (typeClient.equalsIgnoreCase("Particulier")) {
+           listeParticulier=backOfficeSession.rechercheListeParticuliersParCourtierParNomPrenom(courtier, nomClient, prenomClient);
+           if (listeParticulier.isEmpty()){
+                    message = " Aucun client ne correspond aux critère de recherche ";
+                    jspClient = "/Administration/GestionDesEmployes/formRechClient.jsp";
+           } else {
+                    message = " Vous avez "+listeParticulier.size()+" client qui repondent aux critères de recherche";
+                    jspClient = "/Administration/GestionDesEmployes/resultRechClient.jsp";
+           }
+       } else {
+       listeEntreprise=backOfficeSession.rechercheListeEntreprisesParCourtierParNomPrenom(courtier, siret, nomEntreprise);
+           if (listeEntreprise.isEmpty()){
+                    message = " Aucun client ne correspond aux critère de recherche ";
+                    jspClient = "/Administration/GestionDesEmployes/formRechClient.jsp";
+           } else {
+                    message = " Vous avez "+listeEntreprise.size()+" client qui repondent aux critères de recherche";
+                    jspClient = "/Administration/GestionDesEmployes/resultRechClient.jsp";
+           }
+       }
+            request.setAttribute("ListeDesParticuliers", listeParticulier);
+            request.setAttribute("ListeDesEntreprises", listeEntreprise);
+            request.setAttribute("message", message);
+
+    }
 }

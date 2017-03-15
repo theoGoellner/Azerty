@@ -32,5 +32,7 @@ public interface ParticulierFacadeLocal {
     List<Particulier> getListeParticuliersActifs();
     
     List<Particulier> getListeParticuliersActifsParCourtier(Employe courtier);
+
+    List<Particulier> rechercherListeParticuliersParCourtierParNomPrenom(Employe courtier, String nom, String prenom);
     
 }

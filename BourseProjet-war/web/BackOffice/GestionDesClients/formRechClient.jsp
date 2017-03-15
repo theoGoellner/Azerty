@@ -1,11 +1,3 @@
-<%@page import="com.bourse.entities.Entreprise"%>
-<%@page import="com.bourse.entities.Particulier"%>
-<%@page import="com.bourse.entities.Employe"%>
-<%@page import="com.bourse.enumeration.EnumFormEntreprise"%>
-<%@page import="com.bourse.entities.Client"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.bourse.entities.Identification"%>
-<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,6 +15,13 @@
         <div class="container-fluid text-center col-sm-offset-2">
             <div class="row content">
                 <div class="col-sm-10 text-left"> 
+                    <%  String attribut = (String) request.getAttribute("message");
+                        if (attribut.length() > 8) {%>
+                    <div class="alert alert-info">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong> <% out.println(attribut); %> </strong>
+                    </div> 
+                    <% } %>
                     <div class="row">
                         <div class="col-sm-8 well col-sm-offset-2"> 
                             <form name="formulaireAjoutClient" class="form-horizontal" method="post" action="controllerBackOffice">
@@ -68,20 +67,20 @@
                                                     <input id="nomEntreprise" type="text" class="form-control" name="nomEntreprise" placeholder="Saisir le nom de l'entreprise" required>
                                                 </div>
                                             </div>
-                                            <input type="hidden" name="action" value="rechClient">
+                                            <input type="hidden" name="action" value="RechClient">
                                             <div class="row"> </div>
                                             <div class="col-sm-offset-4 col-lg-9">
                                                 <button type="reset" class="btn btn-info col-sm-offset-1">Annuler</button>
                                                 <button type="submit" class="btn btn-info col-sm-offset-3">Valider</button>
                                             </div>
-                                            </fieldset>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <%@include  file="../../jsp_commun/footer.jsp" %>
+                                        </fieldset>
+                                    </form>
                                 </div>
-                                <%@include  file="../../jsp_commun/userEncours.jsp" %>
                             </div>
+                            <%@include  file="../../jsp_commun/footer.jsp" %>
                         </div>
-                    </body>
-                </html>
+                        <%@include  file="../../jsp_commun/userEncours.jsp" %>
+                    </div>
+                </div>
+            </body>
+</html>
