@@ -36,11 +36,10 @@ public class controllerBackOffice extends HttpServlet {
     
     private String jspClient;
     private String message = "";
-    private Client cli=null;
-    private Entreprise entr=null;
-    private Particulier part=null;
+    private Client cli = null;
+    private Entreprise entr = null;
+    private Particulier part = null;
     private Employe emp = null;
-    private Client client = null;
     private List<Employe> listeEmp = null;
     private List<Particulier> listeParticulier = null;
     private List<Entreprise> listeEntreprise = null;
@@ -112,10 +111,17 @@ public class controllerBackOffice extends HttpServlet {
                     jspClient = "/BackOffice/GestionDesClients/gestionClientsCourtier.jsp";
                     break;
                 case "gestionContratsClient":
-                    request.setAttribute("message", message);
+                    System.out.println("toto" + request.getParameter("idClient"));
+                    cli = backOfficeSession.rechercheClientParID(Long.valueOf(request.getParameter("idClient")));
+                    System.out.println("toto" + cli.getMail());
+                    request.setAttribute("client", cli);
+                    request.setAttribute("message", message);                    
                     jspClient = "/BackOffice/GestionDesClients/GestionDesContrats/gestionContratsClient.jsp";
                     break;
                 case "formAjoutContrat":
+                    cli = backOfficeSession.rechercheClientParID(Long.valueOf(request.getParameter("idClient")));
+                    request.setAttribute("client", cli);
+                    request.setAttribute("message", message); 
                     jspClient = "/BackOffice/GestionDesClients/GestionDesContrats/formAjoutContrat.jsp";
                     break;
                 case "formModifContrat":
@@ -358,8 +364,8 @@ public class controllerBackOffice extends HttpServlet {
     protected void doActionArchiverClient(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {    
         
-        client = backOfficeSession.rechercheClientParID(Long.valueOf(request.getParameter("idClient")));
-        backOfficeSession.archivageClient(client);
+        cli = backOfficeSession.rechercheClientParID(Long.valueOf(request.getParameter("idClient")));
+        backOfficeSession.archivageClient(cli);
         
         listeParticulier = backOfficeSession.getListeParticuliersActifsParCourtier((Employe) session.getAttribute("employe"));
         request.setAttribute("ListeDesParticuliers", listeParticulier);

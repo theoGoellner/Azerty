@@ -25,7 +25,7 @@
             <title>Nouveau Client</title>       
         </head>
         <body>
-        <%@include  file="../../jsp_commun/menuBackOffice.jsp" %>
+        <%@include  file="../../../jsp_commun/menuBackOffice.jsp" %>
         <div class="container-fluid text-center col-sm-offset-2">
             <div class="row content">
                 <div class="col-sm-10 text-left"> 
@@ -261,9 +261,9 @@
                         <%}%>  
                     </div>
 
-                    <%@include  file="../../jsp_commun/footer.jsp" %>
+                    <%@include  file="../../../jsp_commun/footer.jsp" %>
                 </div>
-                <%@include  file="../../jsp_commun/userEncours.jsp" %>
+                <%@include  file="../../../jsp_commun/userEncours.jsp" %>
             </div>
         </div>
     </body>

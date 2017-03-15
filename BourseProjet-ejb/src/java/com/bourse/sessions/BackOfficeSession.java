@@ -1,14 +1,18 @@
 package com.bourse.sessions;
 
 import com.bourse.entities.Client;
+import com.bourse.entities.Contrat;
 import com.bourse.entities.Employe;
 import com.bourse.entities.Entreprise;
 import com.bourse.entities.Particulier;
+import com.bourse.entities.PorteFeuille;
 import com.bourse.enumeration.EnumFormEntreprise;
 import com.bourse.facades.ClientFacadeLocal;
+import com.bourse.facades.ContratFacadeLocal;
 import com.bourse.facades.EntrepriseFacadeLocal;
 import com.bourse.facades.IdentificationFacadeLocal;
 import com.bourse.facades.ParticulierFacadeLocal;
+import com.bourse.facades.PorteFeuilleFacadeLocal;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -16,6 +20,12 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class BackOfficeSession implements BackOfficeSessionLocal {
+
+    @EJB
+    private PorteFeuilleFacadeLocal porteFeuilleFacade;
+
+    @EJB
+    private ContratFacadeLocal contratFacade;
 
     @EJB
     private ClientFacadeLocal clientFacade;
@@ -110,12 +120,28 @@ public class BackOfficeSession implements BackOfficeSessionLocal {
     }
 
     
+    // GESTION DES CONTRATS
+    
+    @Override
+    public Contrat creationContrat(Date dateDebut, String rib, String typeContrat, Client cli) {
+        return contratFacade.creerContrat(dateDebut, rib, typeContrat, cli);
+    }
 
-    
-    
-    
+    @Override
+    public Contrat rechercheContratParID(Long idContrat) {
+        return contratFacade.rechercherContratParID(idContrat);
+    }
 
-    
+    // GESTION DES PORTEFEULLLE
 
-    
+    @Override
+    public PorteFeuille creationPorteFeuille(Double montantInitial, Contrat contrat) {
+        return porteFeuilleFacade.creerPorteFeuille(montantInitial, contrat);
+    }
+
+    @Override
+    public PorteFeuille recherchePorteFeuilleParID(Long idPorteFeuille) {
+        return porteFeuilleFacade.rechercherPorteFeuilleParID(idPorteFeuille);
+    }
+ 
 }

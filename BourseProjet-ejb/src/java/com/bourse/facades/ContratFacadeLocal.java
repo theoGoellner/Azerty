@@ -1,6 +1,8 @@
 package com.bourse.facades;
 
+import com.bourse.entities.Client;
 import com.bourse.entities.Contrat;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -20,5 +22,9 @@ public interface ContratFacadeLocal {
     List<Contrat> findRange(int[] range);
 
     int count();
+
+    Contrat creerContrat(Date dateDebut, String rib, String typeContrat, Client cli);
+
+    Contrat rechercherContratParID(Long idContrat);
     
 }

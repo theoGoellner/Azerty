@@ -1,5 +1,6 @@
 package com.bourse.facades;
 
+import com.bourse.entities.Contrat;
 import com.bourse.entities.PorteFeuille;
 import java.util.List;
 import javax.ejb.Local;
@@ -20,5 +21,9 @@ public interface PorteFeuilleFacadeLocal {
     List<PorteFeuille> findRange(int[] range);
 
     int count();
+
+    PorteFeuille creerPorteFeuille(Double montantInitial, Contrat contrat);
+
+    PorteFeuille rechercherPorteFeuilleParID(Long idPorteFeuille);
     
 }
