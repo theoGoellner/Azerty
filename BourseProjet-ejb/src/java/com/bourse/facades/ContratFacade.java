@@ -20,4 +20,6 @@ public class ContratFacade extends AbstractFacade<Contrat> implements ContratFac
         super(Contrat.class);
     }
     
+    
+    
 }

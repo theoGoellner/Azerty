@@ -10,7 +10,6 @@ import com.bourse.enumeration.EnumRoleEmploye;
 import com.bourse.sessions.AdministrationSessionLocal;
 import com.bourse.sessions.BackOfficeSessionLocal;
 import com.bourse.sessions.CommunSessionLocal;
-import com.bourse.sessions.FrontOfficeSessionLocal;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
@@ -31,7 +30,6 @@ public class controllerBackOffice extends HttpServlet {
   
     @EJB
     private CommunSessionLocal communSession;
-
 
     @EJB
     private AdministrationSessionLocal administrationSession;

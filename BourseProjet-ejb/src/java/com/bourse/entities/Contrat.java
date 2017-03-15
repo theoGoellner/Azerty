@@ -15,9 +15,7 @@ import javax.persistence.Temporal;
  *      dateDebut       : la date de debut de contrat
  *      dateFin         : la date de fin de contrat
  *      RIB             : RIB du compte bancaire sur lequel les opération sont effectuées
- *      typeContrat     : 
- *      client          :
- *      porteFeuille    : 
+ *      typeContrat     :  
  */
 
 @Entity

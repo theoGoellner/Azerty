@@ -19,12 +19,10 @@ public class AdministrationSession implements AdministrationSessionLocal {
 
     @EJB
     private IdentificationFacadeLocal identificationFacade;
-
     
     @EJB
     private EmployeFacadeLocal employeFacade;
-    
-    
+        
     
     // GESTION DES IDENTIFICATIONS
    
@@ -46,6 +44,11 @@ public class AdministrationSession implements AdministrationSessionLocal {
     @Override
     public void suppressionIdentification(Identification identification) {
         identificationFacade.supprimerIdentification(identification);
+    }
+    
+    @Override
+    public void ajouterConnexion(Identification ident) {
+        journalConnexionFacade.ajouterConnexion(ident);
     }
     
     @Override
@@ -80,6 +83,11 @@ public class AdministrationSession implements AdministrationSessionLocal {
     }
     
     @Override
+    public void modificationEmploye(Employe emp, String nom, String prenom, String email, Date dateEmbauche, int niveau) {
+        employeFacade.modifierEmploye(emp, nom, prenom, email, dateEmbauche, niveau);
+    }
+    
+    @Override
     public void archivageEmploye(Employe employe) {
         employeFacade.archiverEmploye(employe);
         identificationFacade.archiverIdentification(identificationFacade.rechercherIdentParIDUserEtType(employe.getId(), "Employe"));
@@ -100,15 +108,5 @@ public class AdministrationSession implements AdministrationSessionLocal {
         return employeFacade.rechercherChefSalle();
     } 
 
-    @Override
-    public void ajouterConnexion(Identification ident) {
-        journalConnexionFacade.ajouterConnexion(ident);
-    }
-
-    @Override
-    public void modificationEmploye(Employe emp, String nom, String prenom, String email, Date dateEmbauche, int niveau) {
-        employeFacade.modifierEmploye(emp, nom, prenom, email, dateEmbauche, niveau);
-    }
-    
-    
+      
 }

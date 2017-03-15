@@ -86,8 +86,7 @@
                             </form>
                         </div>
                     </div>
-
-                    
+                   
                     <%@include  file="../../jsp_commun/footer.jsp" %>
                 </div>
                 <%@include  file="../../jsp_commun/userEncours.jsp" %>

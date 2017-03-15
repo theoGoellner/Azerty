@@ -25,7 +25,6 @@
                     <%  Particulier part = (Particulier) request.getAttribute("particulier");
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");                        
                         Employe user = (Employe) session.getAttribute("employe");
-                        System.out.println("coco" + sdf.format(part.getDateNais()));
                     %>
                     <div class="row">
                         <div class="col-sm-8 well col-sm-offset-2"> 
